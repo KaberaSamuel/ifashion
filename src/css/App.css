@@ -1,0 +1,75 @@
+.app {
+  height: 100vh;
+}
+
+.navbar {
+  background-color: var(--black);
+  height: calc(100vh - 40px);
+  padding: 40px 30px;
+  color: var(--white);
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  font-weight: bold;
+  position: fixed;
+  border-radius: 30px;
+}
+
+.navbar img {
+  width: 90px;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  font-size: var(--largefs);
+}
+
+.navbar .links {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.navbar a {
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.navbar .links a.active {
+  color: var(--lightblue);
+}
+
+.navbar .links a .cart-amounts {
+  background-color: var(--lightblue);
+  color: var(--black);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--smallfs);
+  border-radius: 50%;
+}
+
+.navbar > div:last-child {
+  flex: 1 1 auto;
+  color: var(--gray);
+  font-size: var(--smallfs);
+  font-weight: lighter;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+main {
+  height: 100%;
+  margin-left: auto;
+  width: calc(100vw - 370px);
+}
