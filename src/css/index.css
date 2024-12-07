@@ -12,6 +12,8 @@
   --normalfs: 1.1rem;
   --smallfs: 0.9rem;
   --largefs: 1.3rem;
+  --xlargefs: 1.6rem;
+  --sidebarwidth: 300px;
 }
 
 body {
@@ -20,5 +22,10 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: var(--normalfs);
   padding: 20px;
-  height: 150vh;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
 }

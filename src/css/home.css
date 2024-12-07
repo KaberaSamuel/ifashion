@@ -1,0 +1,158 @@
+.ad a,
+.community a {
+  color: var(--white);
+  background-color: var(--black);
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 20px;
+  font-size: var(--largefs);
+}
+
+.home > * {
+  margin-bottom: 50px;
+  /* border: 2px solid red; */
+}
+
+.home > :last-child {
+  margin-bottom: 0;
+}
+
+.topSlider {
+  height: calc(100vh - 30px);
+}
+
+.topSlider img {
+  height: calc(100% - 45px);
+}
+
+.topSlider.swiper .swiper-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.topSlider.swiper .swiper-pagination-bullet-active {
+  background-color: var(--black);
+}
+
+.orders {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.orders > p:first-child {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 10px 0;
+  font-weight: 700;
+  font-size: var(--largefs);
+}
+
+.orders .drops {
+  margin-top: 40px;
+}
+
+.orders .drops > p {
+  font-size: var(--largefs);
+  font-weight: 700;
+}
+
+.orders .drops .products {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.orders .drops .products .product {
+  text-align: left;
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 15px;
+  box-shadow: 2px 5px 5px var(--black);
+  overflow: hidden;
+  transition: scale 0.1s;
+}
+
+.orders .drops .product:hover {
+  scale: 1.03;
+}
+
+.orders .drops .product .description {
+  padding: 5px 15px 15px;
+}
+
+.orders .drops .product .label {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.ad {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.ad div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ad img {
+  border-radius: 20px;
+}
+
+.community {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.community img {
+  width: 70%;
+}
+
+.community .bold {
+  font-weight: 700;
+}
+
+.community a {
+  margin-top: 15px;
+}
+
+.collaborators {
+  text-align: center;
+  font-size: var(--largefs);
+  margin-top: 20px;
+}
+
+.collaborators > :first-child {
+  margin-bottom: 20px;
+}
+
+.collaborators p {
+  font-weight: 700;
+}
+
+.collaborators .bottomSlider {
+  background-color: var(--black);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.collaborators .bottomSlider .swiper-slide {
+  background-color: var(--lightblue);
+  border-radius: 10px;
+}
+
+.collaborators .bottomSlider [class*="swiper-button"] {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--white);
+  box-shadow: 2px 2px 5px black;
+}

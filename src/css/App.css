@@ -1,39 +1,45 @@
 .app {
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
-.navbar {
+.app > * {
+  /* border: 2px solid red; */
+}
+
+.sidebar {
   background-color: var(--black);
   height: calc(100vh - 40px);
   padding: 40px 30px;
   color: var(--white);
-  width: 290px;
+  width: var(--sidebarwidth);
   display: flex;
   flex-direction: column;
   gap: 50px;
   font-weight: bold;
   position: fixed;
   border-radius: 30px;
+  /* display: none; */
 }
 
-.navbar img {
-  width: 90px;
+.sidebar img {
+  width: 105px;
 }
 
-.navbar .logo {
+.sidebar .logo {
   display: flex;
   align-items: center;
-  gap: 40px;
-  font-size: var(--largefs);
+  gap: 30px;
+  font-size: var(--xlargefs);
 }
 
-.navbar .links {
+.sidebar .links {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.navbar a {
+.sidebar a {
   color: var(--white);
   text-decoration: none;
   display: flex;
@@ -41,11 +47,11 @@
   align-items: center;
 }
 
-.navbar .links a.active {
+.sidebar .links a.active {
   color: var(--lightblue);
 }
 
-.navbar .links a .cart-amounts {
+.sidebar .links a .cart-amounts {
   background-color: var(--lightblue);
   color: var(--black);
   width: 20px;
@@ -57,7 +63,7 @@
   border-radius: 50%;
 }
 
-.navbar > div:last-child {
+.sidebar > div:last-child {
   flex: 1 1 auto;
   color: var(--gray);
   font-size: var(--smallfs);
@@ -69,7 +75,6 @@
 }
 
 main {
-  height: 100%;
   margin-left: auto;
-  width: calc(100vw - 370px);
+  width: calc(100vw - var(--sidebarwidth) - 75px);
 }
