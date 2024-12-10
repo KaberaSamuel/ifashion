@@ -1,0 +1,67 @@
+.topbar {
+  margin-bottom: 40px;
+  padding: 20px;
+  border-radius: 0 0 30px 30px;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.topbar form {
+  display: flex;
+  gap: 40px;
+  font-size: var(--largefs);
+}
+
+.topbar p {
+  margin-top: 15px;
+  text-align: center;
+  color: rgb(235, 235, 169);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+form > :first-child {
+  flex: 1 1 auto;
+}
+
+form .input {
+  padding: 10px;
+  border-radius: 15px;
+}
+
+form .input:focus {
+  outline: none;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  list-style-type: none;
+}
+
+.products .product {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 2px 5px 5px var(--black);
+  background-color: var(--black);
+  color: var(--white);
+  transition: scale 0.1s;
+}
+
+.products .product:hover {
+  scale: 1.02;
+}
+
+.products .product img {
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+}
+
+.products .product .description {
+  padding: 0px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
