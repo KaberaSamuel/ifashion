@@ -14,7 +14,7 @@
   --largefs: 1.3rem;
   --xlargefs: 1.6rem;
   --sidebarwidth: 300px;
-  --sidebarwidth: 0px;
+  /* --sidebarwidth: 0px; */
 }
 
 body {

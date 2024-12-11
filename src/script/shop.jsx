@@ -1,6 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../css/home.css";
 import "../css/shop.css";
+import { faDiceSix } from "@fortawesome/free-solid-svg-icons";
+
+function sort(array, sortingCondition) {
+  if (sortingCondition === "a-z") {
+    array.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortingCondition === "z-a") {
+    array.sort((a, b) => b.title.localeCompare(a.title));
+  } else if (sortingCondition === "lowest") {
+    array.sort((a, b) => a.price - b.price);
+  } else if (sortingCondition === "highest") {
+    array.sort((a, b) => b.price - a.price);
+  }
+
+  return array;
+}
 
 function Form({ searchProduct, handleSearchChange, handleSelectChange }) {
   return (
@@ -26,35 +42,40 @@ function Form({ searchProduct, handleSearchChange, handleSelectChange }) {
   );
 }
 
-function GenerateProducts({ data }) {
+function GenerateProducts({ products }) {
   return (
-    <ul className="products">
-      {data.map(({ id, title, price, image }) => (
-        <li key={id} className="product">
-          <img src={image} />
-          <div className="description">
-            <p>{title}</p>
-            <p>${price}</p>
+    <div className="products">
+      {products.map(({ id, title, price, image, description }) => (
+        <Link
+          to={`/products/${id}`}
+          key={id}
+          state={{
+            id,
+            title,
+            price,
+            image,
+            description,
+          }}
+          className="product"
+        >
+          <div>
+            <img src={image} />
+            <div className="description">
+              <p>{title}</p>
+              <p>${price}</p>
+            </div>
           </div>
-        </li>
+        </Link>
       ))}
-    </ul>
+    </div>
   );
 }
 
 function Shop() {
-  const [data, setData] = useState([]);
-  const [products, setProducts] = useState([]);
+  const { state: storeData } = useLocation();
+  const [products, setProducts] = useState(storeData);
   const [searchProduct, setSearchProduct] = useState("");
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products?sort=asc")
-      .then((res) => res.json())
-      .then((result) => {
-        setData(result);
-        setProducts(result);
-      });
-  }, []);
+  const [sortingCondition, setSortingCondition] = useState("a-z");
 
   return (
     <div>
@@ -63,29 +84,21 @@ function Shop() {
           searchProduct={searchProduct}
           handleSearchChange={(e) => {
             const search = e.target.value;
-            setSearchProduct(e.target.value);
-            const newProducts = data.filter(({ title }) =>
-              String(title).toLowerCase().includes(search)
+            setSearchProduct(search);
+            let newProducts = storeData.filter(({ title }) =>
+              String(title)
+                .toLowerCase()
+                .replaceAll(" ", "")
+                .includes(search.toLowerCase())
             );
+
+            newProducts = sort(newProducts, sortingCondition);
             setProducts(newProducts);
           }}
           handleSelectChange={(e) => {
             const choice = e.target.value;
-            let newProducts;
-            if (choice === "a-z") {
-              newProducts = products.toSorted((a, b) =>
-                a.title.localeCompare(b.title)
-              );
-            } else if (choice === "z-a") {
-              newProducts = products.toSorted((a, b) =>
-                b.title.localeCompare(a.title)
-              );
-            } else if (choice === "lowest") {
-              newProducts = products.toSorted((a, b) => a.price - b.price);
-            } else if (choice === "highest") {
-              newProducts = products.toSorted((a, b) => b.price - a.price);
-            }
-
+            const newProducts = sort(products, choice);
+            setSortingCondition(choice);
             setProducts(newProducts);
           }}
         />
@@ -93,7 +106,7 @@ function Shop() {
         <p>{products.length} products found</p>
       </div>
 
-      <GenerateProducts data={products} />
+      <GenerateProducts products={products} />
     </div>
   );
 }

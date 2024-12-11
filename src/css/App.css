@@ -19,7 +19,7 @@
   font-weight: bold;
   position: fixed;
   border-radius: 30px;
-  display: none;
+  /* display: none; */
 }
 
 .sidebar img {

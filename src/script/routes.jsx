@@ -3,6 +3,7 @@ import Shop from "./shop.jsx";
 import Login from "./login.jsx";
 import Cart from "./cart.jsx";
 import Home from "./home.jsx";
+import Product from "./product.jsx";
 import ErrorPage from "./errorpage.jsx";
 
 const routes = [
@@ -24,6 +25,11 @@ const routes = [
       {
         path: "shop",
         element: <Shop />,
+      },
+
+      {
+        path: "products/:productId",
+        element: <Product />,
       },
 
       {

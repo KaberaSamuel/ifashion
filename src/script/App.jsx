@@ -7,8 +7,21 @@ import {
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products?sort=asc")
+      .then((res) => res.json())
+      .then((data) => {
+        const sortedData = data.toSorted((a, b) =>
+          a.title.localeCompare(b.title)
+        );
+        setData(sortedData);
+      });
+  }, []);
+
   return (
     <div className="app">
       <aside className="sidebar">
@@ -36,7 +49,7 @@ function App() {
             </Link>
           </div>
           <div>
-            <Link to={"shop"}>
+            <Link to={"shop"} state={data}>
               <FontAwesomeIcon icon={faShop} />
               <p>Shop</p>
             </Link>
