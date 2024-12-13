@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/home.css";
 import "../css/shop.css";
-import { faDiceSix } from "@fortawesome/free-solid-svg-icons";
 
 function sort(array, sortingCondition) {
   if (sortingCondition === "a-z") {
