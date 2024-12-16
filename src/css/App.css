@@ -2,6 +2,7 @@
   width: calc(100vw - 10px);
   min-height: 100vh;
   padding: 15px;
+  overflow: hidden;
 }
 
 /* .app > * {

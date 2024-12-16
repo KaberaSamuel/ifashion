@@ -7,14 +7,14 @@
 :root {
   --white: rgb(245, 245, 245);
   --black: rgb(10, 10, 10);
-  --lightblue: rgb(60, 200, 160);
+  --lightblack: rgb(30, 30, 30);
+  --lightblue: rgb(115, 229, 197);
   --gray: rgb(60, 60, 60);
   --normalfs: 1.1rem;
   --smallfs: 0.9rem;
   --largefs: 1.3rem;
   --xlargefs: 1.6rem;
   --sidebarwidth: 300px;
-  /* --sidebarwidth: 0px; */
 }
 
 body {

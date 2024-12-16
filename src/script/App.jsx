@@ -46,7 +46,7 @@ function Sidebar({ storeData }) {
           </Link>
         </div>
         <div>
-          <Link to={"cart"}>
+          <Link state={storeData} to={"cart"}>
             <FontAwesomeIcon icon={faShoppingCart} />
             <p>Cart</p>
             <div className="cart-amounts">{cartData.length}</div>

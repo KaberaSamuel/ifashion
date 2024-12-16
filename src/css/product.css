@@ -1,6 +1,6 @@
 .product-page {
   color: var(--white);
-  min-height: 100vh;
+  height: fit-content;
   padding: 30px 40px;
 }
 
@@ -34,4 +34,106 @@
 
 .product-page .description p:last-child {
   line-height: 1.5rem;
+}
+
+/* dealing with display messages when adding products to the cart */
+.product-page .messages {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  width: 350px;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-items: end;
+  transition: all 0.3s ease;
+  /* border: 2px solid red; */
+}
+
+.product-page .message {
+  background-color: var(--lightblack);
+  color: var(--white);
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation-name: slide-in, slide-out;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s, 3s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  transform: translateX(600px);
+  box-shadow: 5px 5px 20px black;
+  border-radius: 5px;
+}
+
+.product-page .message p {
+  padding: 20px 15px;
+}
+
+.product-page .message .icon {
+  align-self: end;
+  padding: 2px 10px 0;
+  position: absolute;
+  color: gray;
+}
+
+.product-page .message .icon:hover {
+  color: var(--white);
+}
+
+.product-page .message .loader {
+  height: 4px;
+}
+
+.product-page .message .filler {
+  height: 100%;
+  width: 100%;
+  background-color: var(--lightblue);
+  animation: ease-in filler-loading 2.5s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes filler-loading {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(600px);
+  }
+
+  80% {
+    transform: translateX(-5px);
+  }
+
+  90% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0px);
+  }
+
+  10% {
+    transform: translateX(-10px);
+  }
+
+  to {
+    transform: translateX(600px);
+  }
 }
