@@ -1,13 +1,13 @@
 .app {
-  width: calc(100vw - 10px);
+  width: 100vw;
   min-height: 100vh;
   padding: 15px;
   overflow: hidden;
 }
 
-/* .app > * {
-  border: 2px solid green;
-} */
+.app > * {
+  /* border: 2px solid green; */
+}
 
 .sidebar {
   background-color: var(--black);
@@ -21,7 +21,6 @@
   font-weight: bold;
   position: fixed;
   border-radius: 30px;
-  /* display: none; */
 }
 
 .sidebar img {
@@ -56,12 +55,12 @@
 .sidebar .links a .cart-amounts {
   background-color: var(--lightblue);
   color: var(--black);
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--smallfs);
+  font-size: 0.8rem;
   border-radius: 50%;
 }
 
@@ -79,4 +78,124 @@
 main {
   width: calc(100% - var(--sidebarwidth) - 25px);
   margin-left: auto;
+  padding-right: 40px;
+}
+
+/* working animated message popups */
+.popups-container {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  width: 350px;
+  bottom: 0;
+}
+
+.popup {
+  background-color: var(--lightblack);
+  color: var(--white);
+  overflow: hidden;
+  width: 100%;
+  height: 75px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  animation-name: slide-in, slide-out;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s, 3s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  transform: translate(600px, 0);
+  box-shadow: 5px 5px 20px black;
+  border-radius: 5px;
+}
+
+.popup.immediate-remove {
+  animation: immediate-remove 0.5s ease-in-out !important;
+}
+
+.popup p {
+  height: calc(100% - 5px);
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.popup .icon {
+  align-self: end;
+  padding: 2px 10px 0;
+  position: absolute;
+  color: gray;
+}
+
+.popup .icon:hover {
+  color: var(--white);
+}
+
+.popup .loader {
+  height: 5px;
+}
+
+.popup .filler {
+  height: 100%;
+  width: 100%;
+  background-color: var(--lightblue);
+  animation: ease-in filler-loading 2.5s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(600px);
+  }
+
+  80% {
+    transform: translateX(-5px);
+  }
+
+  90% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes filler-loading {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0px);
+  }
+
+  10% {
+    transform: translateX(-20px);
+  }
+
+  to {
+    transform: translateX(600px);
+  }
+}
+
+@keyframes immediate-remove {
+  0% {
+    transform: translateX(0px);
+  }
+
+  10% {
+    transform: translateX(-20px);
+  }
+
+  to {
+    transform: translateX(600px);
+  }
 }

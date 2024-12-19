@@ -13,7 +13,12 @@ export const AppUIContext = createContext(null);
 export const CartContext = createContext(null);
 
 function Sidebar({ storeData }) {
-  const { cartData } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
+  const numberOfCartItems = cartItems.reduce(
+    (total, currentItem) => total + currentItem.units,
+    0
+  );
+
   return (
     <aside className="sidebar">
       <div>
@@ -49,7 +54,7 @@ function Sidebar({ storeData }) {
           <Link state={storeData} to={"cart"}>
             <FontAwesomeIcon icon={faShoppingCart} />
             <p>Cart</p>
-            <div className="cart-amounts">{cartData.length}</div>
+            <div className="cart-amounts">{numberOfCartItems}</div>
           </Link>
         </div>
       </div>
@@ -65,7 +70,7 @@ function Sidebar({ storeData }) {
 function App() {
   const [bgColor, setBgColor] = useState("var(--white)");
   const [storeData, setStoreData] = useState([]);
-  const [cartData, setCartData] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     fetch("https://fakestoreapi.com/products?sort=asc")
       .then((res) => res.json())
@@ -79,7 +84,7 @@ function App() {
 
   return (
     <AppUIContext.Provider value={{ setBgColor }}>
-      <CartContext.Provider value={{ cartData, setCartData }}>
+      <CartContext.Provider value={{ cartItems, setCartItems }}>
         <div className="app" style={{ backgroundColor: bgColor }}>
           <Sidebar storeData={storeData} />
           <main>

@@ -1,47 +1,18 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { AppUIContext } from "./App";
-import { CartContext } from "./App";
+import { AppUIContext, CartContext } from "./App";
+import { MessagePopups } from "./MessagePopups";
 import "../css/product.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-function MessageElements({ messagesArray }) {
-  const messagesRef = useRef(null);
-  const messagesNode = messagesRef.current;
-
-  return (
-    <div className="messages" ref={messagesRef}>
-      {messagesArray.map((message, index) => (
-        <div
-          key={index}
-          className="message"
-          onAnimationEnd={(e) => {
-            if (e.animationName === "slide-out") {
-              messagesNode.removeChild(e.target);
-            }
-          }}
-        >
-          <div className="icon">
-            <FontAwesomeIcon icon={faXmark} />
-          </div>
-          <p>{message}</p>
-          <div className="loader">
-            <div className="filler"></div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function Product() {
   const { setBgColor } = useContext(AppUIContext);
-  const { cartData, setCartData } = useContext(CartContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
   const { state: productData } = useLocation();
   const { id, image, title, price, description } = productData;
-  const [messagesArray, setMessagesArray] = useState([]);
+  const [popupsArray, setMessagesArray] = useState([]);
 
   useEffect(() => {
     setBgColor("var(--black)");
@@ -63,12 +34,12 @@ function Product() {
             image,
             title,
             price,
-            quantity: 1,
+            units: 1,
             total: price,
           };
           let isInCart = false;
 
-          cartData.forEach(({ id: productId }) => {
+          cartItems.forEach(({ id: productId }) => {
             if (productId === cartItem.id) {
               isInCart = true;
             }
@@ -76,15 +47,15 @@ function Product() {
 
           let message;
           if (!isInCart) {
-            cartData.push(cartItem);
+            cartItems.push(cartItem);
             message = "Item added to the cart";
-            setCartData([...cartData]);
+            setCartItems([...cartItems]);
           } else {
             message = "Already in the cart";
           }
 
-          messagesArray.push(message);
-          setMessagesArray([...messagesArray]);
+          popupsArray.push(message);
+          setMessagesArray([...popupsArray]);
         }}
       >
         Add to cart
@@ -94,7 +65,7 @@ function Product() {
         <p>{description}</p>
       </div>
 
-      <MessageElements messagesArray={messagesArray} />
+      <MessagePopups popupsArray={popupsArray} />
     </div>
   );
 }
